@@ -2,12 +2,11 @@
 $detalhe = array();
 foreach ($generos as $genero) {
     $editLink = $this->Html->link('Alterar', '/generos/edit/' . $genero['Genero']['id']);
-    //$deleteLink = $this->Html->link('Excluir', '/filmes/delete/' . $filme['Filme']['id']);
-    //$viewLink = $this->Html->link($filme['Filme']['nome'], '/filmes/view/' . $filme['Filme']['id']);
+    $deleteLink = $this->Html->link('Excluir', '/generos/delete/' . $genero['Genero']['id']);
+    $viewLink = $this->Html->link($genero['Genero']['nome'], '/generos/view/' . $genero['Genero']['id']);
     $detalhe[] = array(
-        //$viewLink, 
-        $genero['Genero']['nome'],
-        $editLink
+        $viewLink, 
+        $editLink . ' ' . $deleteLink 
     );
 }
 

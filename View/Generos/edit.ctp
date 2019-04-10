@@ -2,7 +2,7 @@
 $form = $this->Form->create('Genero');
 $form .=$this->Form->hidden('Genero.id');
 $form .= $this->Form->input('Genero.nome');
-$form .=$this->Form->end('Gravar');
+$form .=$this->Form->end('Alterar');
 
 $voltarLink = $this->Html->link('Voltar', '/generos');
 
