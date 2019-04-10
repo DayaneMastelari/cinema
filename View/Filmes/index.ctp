@@ -18,9 +18,11 @@ $header = $this->Html->tableHeaders($titulos);
 $body = $this->Html->tableCells($detalhe);
 $novoButton = $this->Html->link('Novo', '/filmes/add');
 $generosButton = $this->Html->link('    Generos', '/generos');
+$criticasButton = $this->Html->link('    Criticas', '/criticas');
 
 echo $this->Html->tag('h1', 'Filmes');
 echo $novoButton;
 echo $generosButton;
+echo $criticasButton;
 echo $this->Html->tag('table', $header . $body);
 ?>
