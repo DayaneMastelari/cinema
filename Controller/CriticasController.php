@@ -39,14 +39,14 @@ class CriticasController extends AppController {
         $order = array('Filme.nome' => 'asc');
         $filmes = $this->Critica->Filme->find('list', compact('fields', 'order'));
         $this->set('filmes', $filmes);        
-    }/*
+    }
 
     public function view($id = null) {
-        $fields = array('Filme.id', 'Filme.nome', 'Filme.duracao', 'Filme.idioma', 'Filme.ano');
-        $conditions = array('Filme.id' => $id);
-        $this->request->data = $this->Filme->find('first', compact('fields', 'conditions'));
+        $fields = array('Critica.id', 'Critica.nome', 'Critica.avaliacao', 'Critica.data_avaliacao', 'Filme.nome');
+        $conditions = array('Critica.id' => $id);
+        $this->request->data = $this->Critica->find('all', compact('fields', 'conditions'));
     }
-*/
+
     public function delete($id) {
         $this->Critica->delete($id);
         $this->Flash->set('Critica excluída com sucesso!');
