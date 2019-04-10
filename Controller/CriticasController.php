@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 class CriticasController extends AppController {
 
     public function index() {
-        $fields = array('Critica.id', 'Critica.nome', 'Critica.avaliacao', 'Critica.data_avaliacao');
+        $fields = array('Critica.id', 'Critica.nome', 'Critica.avaliacao', 'Critica.data_avaliacao', 'Filme.nome');
         $criticas = $this->Critica->find('all', compact('fields'));
 
         $this->set('criticas', $criticas);        
@@ -23,35 +23,34 @@ class CriticasController extends AppController {
         $this->set('filmes', $filmes); 
     }
 
-    /*
 
     public function edit($id = null) {
         if (!empty($this->request->data)) {
-            if ($this->Filme->save($this->request->data)) {
-                $this->Flash->set('Filme alterado com sucesso!');
-                $this->redirect('/filmes');
+            if ($this->Critica->save($this->request->data)) {
+                $this->Flash->set('Critica alterada com sucesso!');
+                $this->redirect('/criticas');
             }
         } else {
-            $fields = array('Filme.id', 'Filme.nome', 'Filme.duracao', 'Filme.idioma', 'Filme.ano', 'Filme.genero_id');
-            $conditions = array('Filme.id' => $id);
-            $this->request->data = $this->Filme->find('first', compact('fields', 'conditions'));
+            $fields = array('Critica.id', 'Critica.nome', 'Critica.avaliacao', 'Critica.data_avaliacao', 'Critica.filme_id');
+            $conditions = array('Critica.id' => $id);
+            $this->request->data = $this->Critica->find('first', compact('fields', 'conditions'));
         }
-        $fields = array('Genero.id', 'Genero.nome');
-        $order = array('Genero.nome' => 'asc');
-        $generos = $this->Filme->Genero->find('list', compact('fields', 'order'));
-        $this->set('generos', $generos);        
-    }
+        $fields = array('Filme.id', 'Filme.nome');
+        $order = array('Filme.nome' => 'asc');
+        $filmes = $this->Critica->Filme->find('list', compact('fields', 'order'));
+        $this->set('filmes', $filmes);        
+    }/*
 
     public function view($id = null) {
         $fields = array('Filme.id', 'Filme.nome', 'Filme.duracao', 'Filme.idioma', 'Filme.ano');
         $conditions = array('Filme.id' => $id);
         $this->request->data = $this->Filme->find('first', compact('fields', 'conditions'));
     }
-
+*/
     public function delete($id) {
-        $this->Filme->delete($id);
-        $this->Flash->set('Filme excluído com sucesso!');
-        $this->redirect('/filmes');
-    }*/
+        $this->Critica->delete($id);
+        $this->Flash->set('Critica excluída com sucesso!');
+        $this->redirect('/criticas');
+    }
 
 }

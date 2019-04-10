@@ -1,8 +1,8 @@
 <?php
 $detalhe = array();
 foreach ($criticas as $critica) {
-    //$editLink = $this->Html->link('Alterar', '/filmes/edit/' . $filme['Filme']['id']);
-    //$deleteLink = $this->Html->link('Excluir', '/filmes/delete/' . $filme['Filme']['id']);
+    $editLink = $this->Html->link('Alterar', '/criticas/edit/' . $critica['Critica']['id']);
+    $deleteLink = $this->Html->link('Excluir', '/criticas/delete/' . $critica['Critica']['id']);
     //$viewLink = $this->Html->link($filme['Filme']['nome'], '/filmes/view/' . $filme['Filme']['id']);
     $detalhe[] = array(
         //$viewLink, 
@@ -10,7 +10,7 @@ foreach ($criticas as $critica) {
         $critica['Filme']['nome'],
         $critica['Critica']['avaliacao'],
         $critica['Critica']['data_avaliacao'],
-        //$editLink . ' ' . $deleteLink
+        $editLink . ' ' . $deleteLink
     );
 }
 
@@ -21,7 +21,7 @@ $body = $this->Html->tableCells($detalhe);
 $novoButton = $this->Html->link('Novo', '/criticas/add');
 $filmesButton = $this->Html->link('Filmes', '/filmes');
 
-echo $this->Html->tag('h1', 'Filmes');
+echo $this->Html->tag('h1', 'Criticas');
 echo $novoButton;
 echo $this->Html->tag('table', $header . $body);
 echo $filmesButton;
