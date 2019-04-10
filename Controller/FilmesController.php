@@ -6,8 +6,6 @@ class FilmesController extends AppController {
     public function index() {
         $fields = array('Filme.id', 'Filme.nome', 'Filme.ano', 'Genero.nome');
         $order = array('Filme.nome' => 'asc');
-        $group = array();
-        $conditions = array();
         $filmes = $this->Filme->find('all', compact('fields', 'order', 'conditions'));
 
         $this->set('filmes', $filmes);        
@@ -38,7 +36,8 @@ class FilmesController extends AppController {
             $this->request->data = $this->Filme->find('first', compact('fields', 'conditions'));
         }
         $fields = array('Genero.id', 'Genero.nome');
-        $generos = $this->Filme->Genero->find('list', compact('fields'));
+        $order = array('Genero.nome' => 'asc');
+        $generos = $this->Filme->Genero->find('list', compact('fields', 'order'));
         $this->set('generos', $generos);        
     }
 
