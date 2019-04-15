@@ -3,11 +3,10 @@ $detalhe = array();
 foreach ($criticas as $critica) {
     $editLink = $this->Html->link('Alterar', '/criticas/edit/' . $critica['Critica']['id']);
     $deleteLink = $this->Html->link('Excluir', '/criticas/delete/' . $critica['Critica']['id']);
-    $viewLink = $this->Html->link($critica['Critica']['nome'], '/criticas/view/' . $critica['Critica']['id']);
+    $viewLink = $this->Html->link($critica['Filme']['nome'], '/criticas/view/' . $critica['Critica']['id']);
     $detalhe[] = array(
-        $viewLink,
         $critica['Critica']['nome'],
-        $critica['Filme']['nome'],
+        $viewLink,
         $critica['Critica']['avaliacao'],
         $critica['Critica']['data_avaliacao'],
         $editLink . ' ' . $deleteLink

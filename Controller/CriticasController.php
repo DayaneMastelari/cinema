@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 class CriticasController extends AppController {
 
     public function index() {
-        $fields = array('Critica.id', 'Critica.nome', 'Critica.avaliacao', 'Critica.data_avaliacao', 'Filme.nome');
+        $fields = array('Critica.id', 'Critica.nome', 'Filme.nome', 'Critica.avaliacao', 'Critica.data_avaliacao');
         $criticas = $this->Critica->find('all', compact('fields'));
 
         $this->set('criticas', $criticas);        
@@ -44,7 +44,7 @@ class CriticasController extends AppController {
     public function view($id = null) {
         $fields = array('Critica.id', 'Critica.nome', 'Critica.avaliacao', 'Critica.data_avaliacao', 'Filme.nome');
         $conditions = array('Critica.id' => $id);
-        $this->request->data = $this->Critica->find('all', compact('fields', 'conditions'));
+        $this->request->data = $this->Critica->find('first', compact('fields', 'conditions'));
     }
 
     public function delete($id) {

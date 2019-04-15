@@ -1,12 +1,14 @@
 <?php
-$view = $this->Html->tag('h2', 'Nome');
-$view .= $this->Html->para('', $this->request->data['Filme']['nome']);
+$view = $this->Html->tag('h2', 'Critica');
+$view .= $this->Html->tag('h4', 'Nome');
+$view .= $this->Html->para('', $this->request->data['Critica']['nome']);
+$view .= $this->Html->tag('h4', 'Avaliação');
+$view .= $this->Html->para('', $this->request->data['Critica']['avaliacao']);
+$view .= $this->Html->tag('h4', 'Data Avaliação');
+$view .= $this->Html->para('', $this->request->data['Critica']['data_avaliacao']);
 
-$view .= $this->Html->tag('h2', 'Críticas');
-foreach ($this->request->data['Critica'] as $critica) {
-    $criticas = $critica['nome'] . ' - ' . date('d/m/Y', strtotime($critica['data_avaliacao'])) . ' - Avaliação: ' . $critica['avaliacao'];
-    $view .= $this->Html->para('', $criticas);
-}
+$view .= $this->Html->tag('h2', 'Filme');
+$view .= $this->Html->para('', $this->request->data['Filme']['nome']);
 
 $voltarLink = $this->Html->link('Voltar', '/criticas');
 
