@@ -31,7 +31,7 @@ class CriticasController extends AppController {
                 $this->redirect('/criticas');
             }
         } else {
-            $fields = array('Critica.id', 'Critica.nome', 'Critica.avaliacao', 'Critica.data_avaliacao', 'Critica.filme_id');
+            $fields = array('Critica.id', 'Critica.nome', 'Critica.avaliacao', 'Critica.data_avaliacao');
             $conditions = array('Critica.id' => $id);
             $this->request->data = $this->Critica->find('first', compact('fields', 'conditions'));
         }

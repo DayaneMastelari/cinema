@@ -8,7 +8,7 @@ foreach ($criticas as $critica) {
         $critica['Critica']['nome'],
         $viewLink,
         $critica['Critica']['avaliacao'],
-        $critica['Critica']['data_avaliacao'],
+        date('d/m/y', strtotime($critica['Critica']['data_avaliacao'])),
         $editLink . ' ' . $deleteLink
     );
 }

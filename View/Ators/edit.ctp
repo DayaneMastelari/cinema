@@ -1,5 +1,6 @@
 <?php
 $form = $this->Form->create('Ator');
+$form .= $this->Form->hidden('Ator.id');
 $form .= $this->Form->input('Ator.nome');
 $form .= $this->Form->dateTime('Ator.nascimento', 'DMY', 'null',
     array(
