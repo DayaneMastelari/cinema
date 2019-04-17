@@ -1,7 +1,10 @@
 <?php
 $form = $this->Form->create('Ator');
 $form .= $this->Form->input('Ator.nome');
-$form .= $this->Form->dateTime('Ator.nascimento', 'DMY', 'null',
+$form .= $this->Form->input('Ator.nascimento', array(
+    'type' => 'text'
+));
+/*$form .= $this->Form->dateTime('Ator.nascimento', 'DMY', 'null',
     array(
         'type' => 'text',
         'minYear' => '1900',
@@ -11,7 +14,7 @@ $form .= $this->Form->dateTime('Ator.nascimento', 'DMY', 'null',
             'hour' => 'HOUR', 'minute' => 'MINUTE', 'meridian' => false
         )
     )
-);
+);*/
 $form .= $this->Form->input('Filme.Filme', array(
     'type' => 'select',
     'multiple' => true,

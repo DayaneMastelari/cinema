@@ -15,9 +15,9 @@ foreach ($this->request->data['Critica'] as $critica) {
 }
 
 $view .= $this->Html->tag('h2', 'Atores');
-$view  .= $this->Html->link('Novo Ator' );
+$view  .= $this->Html->link('Novo Ator', 'ators/add' );
 foreach ($this->request->data['Ator'] as $ator) {
-    $atores = $ator['nome'] . ' - ' . date('d/m/Y', strtotime($ator['nascimento'])) . ' - ' . $this->Html->link('Excluir', '/ators_filmes/delete/' . $ator['id']);
+    $atores = $ator['nome'] . ' - ' . date('d/m/Y', strtotime($ator['nascimento'])) . ' - ' . $this->Html->link('Excluir', '/ators_filmes/delete/' . $ator['AtorsFilme']['id'] . '/' . $this->request->data['Filme']['id']);
     $view .= $this->Html->para('', $atores);
 }
 
