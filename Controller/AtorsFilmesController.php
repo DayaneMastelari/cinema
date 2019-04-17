@@ -8,7 +8,6 @@ class AtorsFilmesController extends AppController {
         $this->redirect('/filmes/view/' . $filmeId);
     }
 
-    
 }
 
 ?>
