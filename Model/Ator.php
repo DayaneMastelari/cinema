@@ -10,6 +10,7 @@ class Ator extends AppModel {
         if (!empty($this->data['Ator']['nascimento'])) {
             $this->data['Ator']['nascimento'] = date('Y-m-d', strtotime($this->data['Ator']['nascimento']));
         }
+        
         return true;
     }
 }
