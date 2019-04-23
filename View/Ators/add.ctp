@@ -1,8 +1,8 @@
 <?php
 $form = $this->Form->create('Ator');
-$form .= $this->Form->input('Ator.nome');
+$form .= $this->Form->input('Ator.nome', array('required' => false));
 $form .= $this->Form->input('Ator.nascimento', array(
-    'type' => 'text'
+    'type' => 'text', 'required' => false
 ));
 /*$form .= $this->Form->dateTime('Ator.nascimento', 'DMY', 'null',
     array(
