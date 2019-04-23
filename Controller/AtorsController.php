@@ -11,9 +11,9 @@ class AtorsController extends AppController {
     }
 
     public function add() {
-        if (!empty($this->request->data)){
+        if (!empty($this->request->data)) {
             $this->Ator->create();
-            if ($this->Ator->saveAll($this->request->data)){
+            if ($this->Ator->saveAll($this->request->data)) {
                 $this->Flash->set('Ator cadastrado com sucesso');
                 $this->redirect('/ators');
             }
@@ -25,8 +25,8 @@ class AtorsController extends AppController {
     }
 
     public function edit($id = null) {
-        if (!empty($this->request->data)){
-            if ($this->Ator->saveAll($this->request->data)){
+        if (!empty($this->request->data)) {
+            if ($this->Ator->saveAll($this->request->data)) {
                 $this->Flash->set('Ator cadastrado com sucesso');
                 $this->redirect('/ators');
             }
@@ -42,7 +42,7 @@ class AtorsController extends AppController {
         $this->set('filmes', $filmes);
     }
 
-    public function view($id = null){
+    public function view($id = null) {
             $fields = array('Ator.id', 'Ator.nome', 'Ator.nascimento');
             $conditions = array('Ator.id' => $id);
             $this->request->data = $this->Ator->find('first', compact('fields', 'conditions'));
