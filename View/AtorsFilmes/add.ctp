@@ -16,4 +16,6 @@ echo $view;
 echo $form;
 echo $voltarButton;
 
+pr($this->request->data)
+
 ?>

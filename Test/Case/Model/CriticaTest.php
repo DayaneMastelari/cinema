@@ -12,6 +12,8 @@ class CriticaTest extends CakeTestCase {
         $this->assertTrue(is_a($this->Critica, 'Critica'));
     }
 
+    public
+
 
 }
 ?>

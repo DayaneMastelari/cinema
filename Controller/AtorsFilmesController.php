@@ -21,8 +21,6 @@ class AtorsFilmesController extends AppController {
         $conditions = array('Filme.id' => $idFilme);
         $filmes = $this->AtorsFilme->Filme->find('first', compact('fields', 'conditions'));
         $this->set('filmes', $filmes);
-
-        pr($filmes);
     }
 
     public function delete($idAtor, $idFilme) {
