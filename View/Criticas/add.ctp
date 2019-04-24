@@ -14,6 +14,7 @@ $form .= $this->Form->input('Critica.avaliacao', array(
     'required' => false  
 ));
 $form .= $this->Form->input('Critica.data_avaliacao', array(
+    'required' => false,
     'type' => 'text',
     'text' => 'Data Avaliação'
 ));

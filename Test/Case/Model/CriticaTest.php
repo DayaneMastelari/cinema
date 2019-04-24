@@ -42,6 +42,13 @@ class CriticaTest extends CakeTestCase {
         $this->assertFalse($saved);
     }
 
+    public function testAnoMenorQueFilme() {
+        $checked = array('data_avaliacao' => '01/01/2018');
+        $this->Critica->set(array('filme_id' => 1));
+        $valid = $this->Critica->anoMaiorIgualFilme($checked);
 
+        $this->assertFalse($valid);
+
+    }
 }
 ?>

@@ -26,7 +26,21 @@ class Critica extends AppModel {
         ),
         'filme_id' => array(
             'notBlank' => array('rule' => 'notBlank', 'message' => 'Escolha um filme')
+        ),
+        'data_avaliacao' => array(
+            'anoMaiorIgualFilme' => array('rule' => 'anoMaiorIgualFilme', 'message' => 'Informar uma data maior ou igual ao ano do filme')
         )
     );
+
+    public function anoMaiorIgualFilme($checked) {
+        $anoMaiorIgualFilme = true;
+        $data = array_values($checked);
+        if (!empty($data) && $this->data['Critica']['filme_id']) {
+            $filmeAno = $this->Filme->field('ano', array('Filme.id' => $this->data['Critica']['filme_id']));
+            $ano = substr($data[0], 6, 4);
+            $anoMaiorIgualFilme = $ano >= $filmeAno;
+        }
+        return $anoMaiorIgualFilme;
+    }
 }
 ?>
