@@ -15,12 +15,14 @@ class FilmesController extends AppController {
         if (!empty($this->request->data)) {
             $this->Filme->create();
             if ($this->Filme->save($this->request->data)) {
+                pr($this->request->data);
                 $this->Flash->set('Filme gravado com sucesso!');
-                $this->redirect('/filmes');
+               $this->redirect('/filmes');
             }
         }
         $fields = array('Genero.id', 'Genero.nome');
-        $generos = $this->Filme->Genero->find('list', compact('fields'));
+        $order = array('Genero.nome' => 'asc');
+        $generos = $this->Filme->Genero->find('list', compact('fields', 'order'));
         $this->set('generos', $generos);        
     }
 
