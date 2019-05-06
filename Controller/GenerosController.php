@@ -3,10 +3,21 @@ App::uses('AppController', 'Controller');
 
 class GenerosController extends AppController {
 
+    public $paginate = array(
+        'fields' => array('Genero.id', 'Genero.nome'),
+        'order' => array('Genero.nome' => 'asc'),
+        'conditions' => array(),
+        'limit' => 10
+    );
+
     public function index(){
-        $fields = array('Genero.id', 'Genero.nome');
-        $order = array('Genero.nome' => 'asc');
-        $generos = $this->Genero->find('all', compact('fields', 'order'));
+        if ($this->request->is('post') && !empty($this->request->data['Genero']['nome'])){
+            $this->paginate['conditions'] = array(
+                'Genero.nome LIKE' => '%' . trim($this->request->data['Genero']['nome']) . '%'
+            );
+        }
+
+        $generos = $this->paginate();
 
         $this->set('generos', $generos);
     }

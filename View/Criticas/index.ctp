@@ -1,4 +1,11 @@
 <?php
+$novoButton = $this->Html->link('Novo', '/criticas/add');
+
+$filtro = $this->Form->create('Critica');
+$filtro .= $this->Form->input('Critica.nome', array('required' => false));
+$filtro .= $this->Form->end('Filtar');
+
+
 $detalhe = array();
 foreach ($criticas as $critica) {
     $editLink = $this->Html->link('Alterar', '/criticas/edit/' . $critica['Critica']['id']);
@@ -17,7 +24,6 @@ foreach ($criticas as $critica) {
 $titulos = array('Nome', 'Filme', 'Avaliação', 'Data',  '');
 $header = $this->Html->tableHeaders($titulos);
 $body = $this->Html->tableCells($detalhe);
-$novoButton = $this->Html->link('Novo', '/criticas/add');
 $filmesButton = $this->Html->link('Filmes', '/filmes');
 
 echo $this->Html->tag('h1', 'Criticas');
