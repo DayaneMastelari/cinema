@@ -2,6 +2,8 @@
 $form = $this->Form->create('Filme');
 $form .= $this->Form->input('Filme.nome', array('required' => false));
 $form .= $this->Form->input('Filme.idioma', array(
+    'label' => '',
+    'empty' => 'Idioma',
     'type' => 'select',
     'options' => array(
         'Inglês' => 'Inglês', 
@@ -13,7 +15,9 @@ $form .= $this->Form->input('Filme.idioma', array(
 $form .= $this->Form->input('Filme.duracao', array('label' => array('text' => 'Duração'), 'required' => false));
 $form .= $this->Form->input('Filme.ano', array('type' => 'text', 'maxlength' => 4));
 $form .= $this->Form->input('Filme.genero_id', array(
+    'label' => '',
     'type' => 'select', 
+    'empty' => 'Genero',
     'options' => $generos
 ));
 $form .= $this->Form->end('Gravar');
