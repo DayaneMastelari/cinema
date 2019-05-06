@@ -3,11 +3,21 @@ App::uses('AppController', 'Controller');
 
 class FilmesController extends AppController {
 
-    public function index() {
-        $fields = array('Filme.id', 'Filme.nome', 'Filme.ano', 'Genero.nome');
-        $order = array('Filme.nome' => 'asc');
-        $filmes = $this->Filme->find('all', compact('fields', 'order', 'conditions'));
+    public $paginate = array(
+        'fields' => array('Filme.id', 'Filme.nome', 'Filme.ano', 'Genero.nome'),
+        'conditions' => array(),
+        'order' => array('Filme.nome' => 'asc'),
+        'limit' => 10,
+    );
 
+    public function index() {
+        if ($this->request->is('post') && !empty($this->request->data['Filme']['nome'])){
+            $this->paginate['conditions'] = array(
+                'Filme.nome LIKE' => '%' . trim($this->request->data['Filme']['nome']) . '%'
+            );
+        }
+
+        $filmes = $this->paginate();
         $this->set('filmes', $filmes);        
     }
 

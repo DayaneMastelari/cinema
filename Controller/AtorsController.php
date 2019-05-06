@@ -33,12 +33,14 @@ class AtorsController extends AppController {
         } else {            
             $fields = array('Ator.id', 'Ator.nome', 'Ator.nascimento');
             $conditions = array('Ator.id' => $id);
-            $this->request->data = $this->Ator->find('first', compact('fields', 'conditions'));
+            $this->request->data = $this->Ator->find('first', compact('fields', 'conditions'));            
         }
         $fields = array('Filme.id', 'Filme.nome');
         $order = array('Filme.nome' => 'asc');
         $filmes = $this->Ator->Filme->find('list', compact('fields', 'order'));
         $this->set('filmes', $filmes);
+
+        pr($this->request->data);
     }
 
     public function view($id = null) {
