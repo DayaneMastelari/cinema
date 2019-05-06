@@ -3,10 +3,21 @@ App::uses('AppController', 'Controller');
 
 class CriticasController extends AppController {
 
-    public function index() {
-        $fields = array('Critica.id', 'Critica.nome', 'Filme.nome', 'Critica.avaliacao', 'Critica.data_avaliacao');
-        $criticas = $this->Critica->find('all', compact('fields'));
+    public $paginate = array(
+        'fields' => array('Critica.id', 'Critica.nome', 'Filme.nome', 'Critica.avaliacao', 'Critica.data_avaliacao'),
+        'order' => array('Critica.nome' => 'asc'),
+        'conditions' => array(),
+        'limit' => 10
+    );
 
+    public function index() {
+        if ($this->request->is('post') && !empty($this->request->data['Critica']['nome'])) {
+            $this->paginate['conditions'] = array(
+                'Critica.nome LIKE' => '%' . trim($this->request->data['Critica']['nome']) . '%'
+            );
+        }
+        
+        $criticas = $this->paginate();
         $this->set('criticas', $criticas);        
     } 
 

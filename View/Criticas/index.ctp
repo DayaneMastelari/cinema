@@ -20,6 +20,14 @@ foreach ($criticas as $critica) {
     );
 }
 
+$paginate = '';
+$paginate .= $this->Paginator->first() . '   ';
+$paginate .= $this->Paginator->prev() . '   ';
+$paginate .= $this->Paginator->next() . '   ';
+$paginate .= $this->Paginator->last() . '   ';
+$this->Html->para('', $paginate);
+
+
 
 $titulos = array('Nome', 'Filme', 'Avaliação', 'Data',  '');
 $header = $this->Html->tableHeaders($titulos);
@@ -28,6 +36,8 @@ $filmesButton = $this->Html->link('Filmes', '/filmes');
 
 echo $this->Html->tag('h1', 'Criticas');
 echo $novoButton;
+echo $filtro;
 echo $this->Html->tag('table', $header . $body);
 echo $filmesButton;
+echo $paginate;
 ?>
