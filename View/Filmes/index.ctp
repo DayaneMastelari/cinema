@@ -41,7 +41,7 @@ $links = array(
 );
 $paginate = $this->Html->nestedList($links, array('class' => 'pagination'), array('class' => 'page-item'));
 $paginate = $this->Html->tag('nav', $paginate);
-$paginateCount .= $this->Html->para('', $this->Paginator->counter(
+$paginateCount = $this->Html->para('', $this->Paginator->counter(
     '{:page} de {:pages}, Mostrando {:current} registros de {:count}, Começando em {:start}, até {:end}'
 ));
 
