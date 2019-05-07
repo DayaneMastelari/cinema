@@ -5,10 +5,21 @@ class AtorsController extends AppController {
 
     public $layout = 'bootstrap';
 
-    public function index() {
-        $fields = array('Ator.id', 'Ator.nome', 'Ator.nascimento');
-        $ators = $this->Ator->find('all', compact('fields'));
+    public $paginate = array(
+        'fields' => array('Ator.id', 'Ator.nome', 'Ator.nascimento'),
+        'order' => array('Ator.nome' => 'asc'),
+        'conditions' => array(),
+        'limit' => 10
+    );
 
+    public function index() {
+        if ($this->request->is('post') && !empty($this->request->data['Ator']['nome'])) {
+            $this->paginate['conditions'] = array(
+                'Ator.nome LIKE' => '%' . trim($this->request->data['Ator']['nome']) . '%'
+            );
+        }
+
+        $ators = $this->paginate;
         $this->set('ators', $ators);
     }
 
