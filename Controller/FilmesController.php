@@ -3,6 +3,8 @@ App::uses('AppController', 'Controller');
 
 class FilmesController extends AppController {
 
+    public $layout = 'bootstrap';
+
     public $paginate = array(
         'fields' => array('Filme.id', 'Filme.nome', 'Filme.ano', 'Genero.nome'),
         'conditions' => array(),

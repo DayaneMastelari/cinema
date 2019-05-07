@@ -1,9 +1,20 @@
 <?php
-$novoButton = $this->Html->link('Novo', '/filmes/add');
+$novoButton = $this->Html->link('Novo', '/filmes/add', array('class' => 'btn btn-success float-right'));
 
-$filtro = $this->Form->create('Filme');
-$filtro .= $this->Form->input('Filme.nome', array('required' => false));
-$filtro .= $this->Form->end('Filtrar');
+$filtro = $this->Form->create('Filme', array('class' => 'form-inline'));
+$filtro .= $this->Form->input('Filme.nome', array(
+    'required' => false,
+    'label' => array('text' => 'Nome', 'class' => 'sr-only'),
+    'class' => 'form-control mb-2 mr-sm-2',
+    'placeholder' => 'Nome'
+));
+$filtro .= $this->Form->button('Filtrar', array('type' => 'submit', 'class' => 'btn btn-primary mb-2'));
+$filtro .= $this->Form->end();
+
+$filtroBar = $this->Html->div('row mb-4 mt-4',
+    $this->Html->div('col-md-6', $filtro) .
+    $this->Html->div('col-md-6', $novoButton)
+);
 
 $detalhe = array();
 foreach ($filmes as $filme) {
@@ -18,28 +29,29 @@ foreach ($filmes as $filme) {
     );
 }
 
-
 $titulos = array('Nome', 'Ano', 'Gênero',  '');
-$header = $this->Html->tableHeaders($titulos);
+$header = $this->Html->tag('thead', $this->Html->tableHeaders($titulos));
 $body = $this->Html->tableCells($detalhe);
 
-$generosButton = $this->Html->link('    Generos', '/generos');
-$criticasButton = $this->Html->link('    Criticas', '/criticas');
-$atoresButton = $this->Html->link('    Atores', '/ators');
+$links = array(
+    $this->Paginator->first('Primeira', array('class' => 'page-link')),
+    $this->Paginator->prev('Anterior', array('class' => 'page-link')),
+    $this->Paginator->next('Próxima', array('class' => 'page-link')),
+    $this->Paginator->last('Última', array('class' => 'page-link'))
+);
+$paginate = $this->Html->nestedList($links, array('class' => 'pagination'), array('class' => 'page-item'));
+$paginate = $this->Html->tag('nav', $paginate);
+$paginateCount .= $this->Html->para('', $this->Paginator->counter(
+    '{:page} de {:pages}, Mostrando {:current} registros de {:count}, Começando em {:start}, até {:end}'
+));
 
-$paginate = '';
-$paginate .= $this->Paginator->first() . '   ';
-$paginate .= $this->Paginator->prev() . '   ';
-$paginate .= $this->Paginator->next() . '   ';
-$paginate .= $this->Paginator->last() . '   ';
-$this->Html->para('', $paginate);
+$paginateBar = $this->Html->div('row',
+    $this->Html->div('col-md-6', $paginate) .
+    $this->Html->div('col-md-6', $paginateCount)
+);
 
 echo $this->Html->tag('h1', 'Filmes');
-echo $novoButton;
-echo $generosButton;
-echo $criticasButton;
-echo $atoresButton;
-echo $filtro;
-echo $this->Html->tag('table', $header . $body);
-echo $paginate;
+echo $filtroBar;
+echo $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'));
+echo $paginateBar;
 ?>
