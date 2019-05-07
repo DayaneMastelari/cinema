@@ -1,8 +1,20 @@
 <?php
+$novoButton = $this->Html->link('Novo', '/ators/add', array('class' => 'btn btn-success float-right'));
 
-$filtro = $this->Form->creat('Ators');
-$filtro .= $this->Form->input('Ators.nome', array('required' => false));
-$filtro .= $this->Form->end('filtrar');
+$filtro = $this->Form->create('Ators', array('class' => 'form-inline'));
+$filtro .= $this->Form->input('Ator.nome', array(
+    'required' => false,
+    'label' => array('class' => 'sr-only'),
+    'placeholder' => 'Buscar por nome',
+    'class' => 'form-control mb-2 mr-sm-2'
+));
+$filtro .= $this->Form->button('Filtrar', array('type' => 'submit', 'class' => 'btn btn-primary mb-2'));
+$filtro .= $this->Form->end();
+
+$filtroBar = $this->Html->div('row mt-4 mb-4',
+    $this->Html->div('col-md-6', $filtro) .
+    $this->Html->div('col-md-6', $novoButton)
+);
 
 $detalhe = array();
 foreach ($ators as $ator){
@@ -16,23 +28,29 @@ foreach ($ators as $ator){
     );
 }
 
-$paginate = '';
-$paginate .= $this->Paginator->first() . '   ';
-$paginate .= $this->Paginator->prev() . '   ';
-$paginate .= $this->Paginator->next() . '   ';
-$paginate .= $this->Paginator->last() . '   ';
-$this->Html->para('', $paginate);
-
-$titulos = array('Nome', 'Data Nascimento');
-$header = $this->Html->tableHeaders($titulos);
+$titulos = array('Nome', 'Data Nascimento', '');
+$header = $this->Html->tag('thead', $this->Html->tableHeaders($titulos));
 $body = $this->Html->tableCells($detalhe);
-$novoButton = $this->Html->link('Novo', '/ators/add');
-$filmesButton = $this->Html->link('Filmes', '/filmes');
+
+$links = array(
+    $this->Paginator->first('Primeira', array('class' => 'page-link')),
+    $this->Paginator->prev('Anterior', array('class' => 'page-link')),
+    $this->Paginator->next('Próxima', array('class' => 'page-link')),
+    $this->Paginator->last('Última', array('class' => 'page-link'))
+);
+$paginate = $this->Html->nestedList($links, array('class' => 'pagination'), array('class' => 'page-item'));
+$paginate = $this->Html->tag('nav', $paginate);
+$paginateCount = $this->Html->para('', $this->Paginator->counter(
+    '{:page} de {:pages}, Mostrando {:current} registros de {:count}, Começando em {:start}, até {:end}'
+));
+
+$paginateBar = $this->Html->div('row',
+    $this->Html->div('col-md-6', $paginate) .
+    $this->Html->div('col-md-6', $paginateCount)
+);
 
 echo $this->Html->tag('h1', 'Atores');
-echo $filtro;
-echo $novoButton;
-echo $this->Html->tag('table', $header . $body);
-echo $filmesButton;
-echo $paginate;
+echo $filtroBar;
+echo $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'));
+echo $paginateBar;
 ?>

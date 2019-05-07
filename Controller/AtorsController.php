@@ -18,8 +18,7 @@ class AtorsController extends AppController {
                 'Ator.nome LIKE' => '%' . trim($this->request->data['Ator']['nome']) . '%'
             );
         }
-
-        $ators = $this->paginate;
+        $ators = $this->paginate();
         $this->set('ators', $ators);
     }
 
