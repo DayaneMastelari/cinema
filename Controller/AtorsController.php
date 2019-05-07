@@ -3,6 +3,8 @@ App::uses('AppController', 'Controller');
 
 class AtorsController extends AppController {
 
+    public $layout = 'bootstrap';
+
     public function index() {
         $fields = array('Ator.id', 'Ator.nome', 'Ator.nascimento');
         $ators = $this->Ator->find('all', compact('fields'));
