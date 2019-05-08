@@ -1,8 +1,9 @@
 <?php
 $form = $this->Form->create('Ator');
-$data = date('d/m/Y', strtotime('Ator.nascimento'));
+$data = date('d/m/Y', strtotime($this->request->data['Ator']['nascimento']));
+pr($data);
 $form .= $this->Form->hidden('Ator.id');
-$form .= $this->Html->div('form-row',
+$form .= $this->Html->div('form-row mt-4',
     $this->Form->input('Ator.nome', array(
         'required' => false,
         'label' => false,
@@ -10,7 +11,7 @@ $form .= $this->Html->div('form-row',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control'
     )) .
-    $this->Form->input($data, array(
+    $this->Form->input('Ator.nascimento', array(
         'type' => 'text', 
         'required' => false,
         'label' => false,
@@ -26,7 +27,7 @@ $form .= $this->Form->input('Filme.Filme', array(
     'label' => array('text' => 'Ator(es)'),
     'placeholder' => 'Nome',
     'div' => array('class' => 'form-group'),
-    'class' => 'form-control'
+    'class' => 'form-control mb-4'
 ));
 $form .= $this->Form->button('Alterar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));
 $form .= $this->Html->link('Voltar', '/ators', array('class' => 'btn btn-secondary'));

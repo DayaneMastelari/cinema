@@ -1,7 +1,7 @@
 <?php
 $form = $this->Form->create('Critica');
 $form .=$this->Form->hidden('Critica.id');
-$form .= $this->Html->div('form-row', 
+$form .= $this->Html->div('form-row mt-4', 
     $this->Form->input('Critica.nome', array(
         'required' => false,
         'placeholder' => 'Nome',
@@ -20,7 +20,7 @@ $form .= $this->Html->div('form-row',
         'class' => 'form-control'
     ))
 );
-$form .= $this->Html->div('form-row',
+$form .= $this->Html->div('form-row mb-4',
     $this->Form->input('Critica.avaliacao', array(
         'type' => 'select',
         'options' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'),

@@ -1,6 +1,6 @@
 <?php
 $form = $this->Form->create('Filme');
-$form .= $this->Html->div('form-row', 
+$form .= $this->Html->div('form-row mt-4', 
     $this->Form->input('Filme.nome', array(
         'required' => false,
         'div' => array('class' => 'form-group col-md-6'),
@@ -48,7 +48,7 @@ $form .= $this->Form->input('Filme.genero_id', array(
     'empty' => 'Seleciono o gênero',
     'options' => $generos,
     'div' => array('class' => 'form-group'),
-    'class' => 'form-control'
+    'class' => 'form-control mb-4'
 ));
 
 $form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));

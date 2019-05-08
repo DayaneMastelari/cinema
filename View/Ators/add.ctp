@@ -1,6 +1,6 @@
 <?php
 $form = $this->Form->create('Ator');
-$form .= $this->Html->div('form-row',
+$form .= $this->Html->div('form-row mt-4',
     $this->Form->input('Ator.nome', array(
         'required' => false,
         'label' => false,
@@ -24,7 +24,7 @@ $form .= $this->Form->input('Filme.Filme', array(
     'label' => array('text' => 'Ator(es)'),
     'placeholder' => 'Nome',
     'div' => array('class' => 'form-group'),
-    'class' => 'form-control'
+    'class' => 'form-control mb-4'
 ));
 $form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));
 $form .= $this->Html->link('Voltar', '/ators', array('class' => 'btn btn-secondary'));

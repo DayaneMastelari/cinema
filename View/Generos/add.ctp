@@ -4,7 +4,7 @@ $form .= $this->Form->input('Genero.nome', array(
     'label' => false, 
     'placeholder' => 'Gênero',
     'div' => array('class' => 'form-group'),
-    'class' => 'form-control'
+    'class' => 'form-control mt-4 mb-4'
 ));
 $form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));
 $form .= $this->Html->link('Voltar', '/generos', array('class' => 'btn btn-secondary'));

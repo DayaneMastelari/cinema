@@ -21,7 +21,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <?php echo $this->Html->link('Filmes', '/filmes', array('class' => 'nav-link')); ?>
                     </li>
                     <li class="nav-item">
