@@ -1,6 +1,6 @@
 <?php
 $form = $this->Form->create('Ator');
-$data = date('d/m/Y', strtotime($this->request->data['Ator']['nascimento']));
+$this->request->data['Ator']['nascimento'] = date('d/m/Y', strtotime($this->request->data['Ator']['nascimento']));
 pr($data);
 $form .= $this->Form->hidden('Ator.id');
 $form .= $this->Html->div('form-row mt-4',
