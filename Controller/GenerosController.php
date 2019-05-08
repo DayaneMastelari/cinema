@@ -20,7 +20,6 @@ class GenerosController extends AppController {
         }
 
         $generos = $this->paginate();
-
         $this->set('generos', $generos);
     }
 
