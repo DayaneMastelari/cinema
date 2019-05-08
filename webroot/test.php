@@ -43,7 +43,7 @@ if (!defined('ROOT')) {
  * The actual directory name for the "app".
  */
 if (!defined('APP_DIR')) {
-	define('APP_DIR', 'apps' . DS . 'cinema');
+	define('APP_DIR', 'apps'. DS . 'cinema');
 }
 
 /**
