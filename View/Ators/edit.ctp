@@ -1,29 +1,38 @@
 <?php
 $form = $this->Form->create('Ator');
+$data = date('d/m/Y', strtotime('Ator.nascimento'));
 $form .= $this->Form->hidden('Ator.id');
-$form .= $this->Form->input('Ator.nome');
-$form .= $this->Form->dateTime('Ator.nascimento', 'DMY', 'null',
-    array(
-        'type' => 'text',
-        'minYear' => '1900',
-        'maxYear' => '2019',
-        'empty' => array(
-            'day' => 'Dia', 'month' => 'Mês', 'year' => 'Ano',
-            'hour' => 'HOUR', 'minute' => 'MINUTE', 'meridian' => false
-        )
-    )
+$form .= $this->Html->div('form-row',
+    $this->Form->input('Ator.nome', array(
+        'required' => false,
+        'label' => false,
+        'placeholder' => 'Nome',
+        'div' => array('class' => 'form-group col-md-6'),
+        'class' => 'form-control'
+    )) .
+    $this->Form->input($data, array(
+        'type' => 'text', 
+        'required' => false,
+        'label' => false,
+        'placeholder' => 'Nascimento',
+        'div' => array('class' => 'form-group col-md-6'),
+        'class' => 'form-control'
+    ))
 );
 $form .= $this->Form->input('Filme.Filme', array(
     'type' => 'select',
     'multiple' => true,
-    'options' => $filmes
+    'options' => $filmes,
+    'label' => array('text' => 'Ator(es)'),
+    'placeholder' => 'Nome',
+    'div' => array('class' => 'form-group'),
+    'class' => 'form-control'
 ));
-$form .= $this->Form->end('Gravar');
-
-$voltarButton = $this->Html->link('Voltar', '/ators');
+$form .= $this->Form->button('Alterar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));
+$form .= $this->Html->link('Voltar', '/ators', array('class' => 'btn btn-secondary'));
+$form .= $this->Form->end();
 
 echo $this->Html->tag('h1', 'Novo Ator');
 echo $form;
-echo $voltarButton;
 
 ?>

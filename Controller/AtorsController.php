@@ -52,7 +52,7 @@ class AtorsController extends AppController {
         $filmes = $this->Ator->Filme->find('list', compact('fields', 'order'));
         $this->set('filmes', $filmes);
 
-        pr($this->request->data);
+        //pr($this->request->data);
     }
 
     public function view($id = null) {
