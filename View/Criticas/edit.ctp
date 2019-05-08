@@ -1,30 +1,49 @@
 <?php
 $form = $this->Form->create('Critica');
 $form .=$this->Form->hidden('Critica.id');
-$form .= $this->Form->input('Critica.nome');
-$form .= $this->Form->input('Critica.filme_id', array(
-    'type' => 'select', 
-    'options' => $filmes
-));
-$form .= $this->Form->input('Critica.avaliacao', array(
-    'type' => 'select',
-    'options' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5')    
-));
-$form .= $this->Form->dateTime('Critica.data_avaliacao', 'DMY', 'null',
-    array(
-        'type' => 'text',
-        'minYear' => '1900',
-        'maxYear' => '2019',
-        'empty' => array(
-            'day' => 'Dia', 'month' => 'Mês', 'year' => 'Ano',
-            'hour' => 'HOUR', 'minute' => 'MINUTE', 'meridian' => false
-        )
-    )
+$form .= $this->Html->div('form-row', 
+    $this->Form->input('Critica.nome', array(
+        'required' => false,
+        'placeholder' => 'Nome',
+        'label' => false,
+        'div' => array('class' => 'form-group col-md-6'),
+        'class' => 'form-control'
+    )) .
+
+    $this->Form->input('Critica.filme_id', array(
+        'type' => 'select', 
+        'empty' => 'Escolha um filme',
+        'options' => $filmes,
+        'required' => false,
+        'label' => false,
+        'div' => array('class' => 'form-group col-md-6'),
+        'class' => 'form-control'
+    ))
 );
-$form .= $this->Form->end('Gravar');
-$voltarLink = $this->Html->link('Voltar', '/criticas');
+$form .= $this->Html->div('form-row',
+    $this->Form->input('Critica.avaliacao', array(
+        'type' => 'select',
+        'options' => array('1' => '1', '2' => '2', '3' => '3', '4' => '4', '5' => '5'),
+        'empty' => 'Avaliação',
+        'required' => false,
+        'label' => false,
+        'div' => array('class' => 'form-group col-md-6'),
+        'class' => 'form-control'
+    )) .
+    $this->Form->input('Critica.data_avaliacao', array(
+        'required' => false,
+        'type' => 'text',
+        'text' => 'Data Avaliação',
+        'label' => false,
+        'placeholder' => 'Data Avaliação',
+        'div' => array('class' => 'form-group col-md-6'),
+        'class' => 'form-control'
+    ))
+);
+$form .= $this->Form->button('Alterar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));
+$form .= $this->Html->link('Voltar', '/criticas', array('class' => 'btn btn-secondary'));
+$form .= $this->Form->end();
 
 echo $this->Html->tag('h1', 'Nova Critica');
 echo $form;
-echo $voltarLink;
 ?>
