@@ -31,6 +31,8 @@ $titulos = array('Nome',  '');
 $header = $this->Html->tag('thead', $this->Html->tableHeaders($titulos));
 $body = $this->Html->tableCells($detalhe);
 
+$this->Paginator->options(array('update' => '#content'));
+
 $links = array(
     $this->Paginator->first('Primeira', array('class' => 'page-link')),
     $this->Paginator->prev('Anterior', array('class' => 'page-link')),
@@ -53,4 +55,8 @@ echo $this->Html->tag('h1', 'Generos');
 echo $filtroBar;
 echo $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'));
 echo $paginateBar;
+
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
 ?>

@@ -4,6 +4,8 @@ App::uses('AppController', 'Controller');
 class GenerosController extends AppController {
 
     public $layout = 'bootstrap';
+    public $helper = array('Js' => array('Jquerry'));
+    public $components = array('RequestHandler');
 
     public $paginate = array(
         'fields' => array('Genero.id', 'Genero.nome'),

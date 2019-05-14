@@ -6,7 +6,8 @@ $form .= $this->Html->div('form-row mt-4',
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'placeholder' => 'Nome',
-        'label' => false
+        'label' => false,
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) .
     $this->Form->input('Filme.idioma', array(
         'label' => false,
@@ -19,18 +20,19 @@ $form .= $this->Html->div('form-row mt-4',
             'Francês' => 'Francês'
         ),
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'   
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))  
     ))
 );
 
 $form .= $this->Html->div('form-row',
-    $this->Form->input('Filme.duracao', array(
-        'label' => array('text' => 'Duração'), 
+    $this->Form->input('Filme.duracao', array( 
         'required' => false,
         'div' => array('class' => 'form-group col-md-6'),
         'class' => 'form-control',
         'label' => false,
-        'placeholder' => 'Duração'
+        'placeholder' => 'Duração',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . 
     $this->Form->input('Filme.ano', array(
         'type' => 'text', 
@@ -38,7 +40,8 @@ $form .= $this->Html->div('form-row',
         'label' => false,
         'placeholder' => 'Ano',
         'div' => array('class' => 'form-group col-md-6'),
-        'class' => 'form-control'
+        'class' => 'form-control',
+        'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 
 );
@@ -48,13 +51,19 @@ $form .= $this->Form->input('Filme.genero_id', array(
     'empty' => 'Seleciono o gênero',
     'options' => $generos,
     'div' => array('class' => 'form-group'),
-    'class' => 'form-control mb-4'
+    'class' => 'form-control mb-4',
+    'error' => array('attributes' => array('class' => 'invalid-feedback'))
 ));
 
-$form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));
-$form .= $this->Html->link('Voltar', '/filmes', array('class' => 'btn btn-secondary'));
+$form .= $this->Js->submit('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-2', 'div' => false, 'update' => '#content'));
+$form .= $this->Js->link('Voltar', '/filmes', array('class' => 'btn btn-secondary', 'update' => '#content'));
 $form .= $this->Form->end();
 
 echo $this->Html->tag('h1', 'Novo Filme');
 echo $form;
+$this->Js->buffer('$(".form-error").addClass("is-invalid")');
+
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
 ?>

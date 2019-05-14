@@ -1,5 +1,8 @@
 <?php
-$novoButton = $this->Html->link('Novo', '/filmes/add', array('class' => 'btn btn-success float-right'));
+$novoButton = $this->Js->link('Novo', '/filmes/add', array(
+    'class' => 'btn btn-success float-right', 
+    'update' => '#content'
+));
 
 $filtro = $this->Form->create('Filme', array('class' => 'form-inline'));
 $filtro .= $this->Form->input('Filme.nome', array(
@@ -8,7 +11,11 @@ $filtro .= $this->Form->input('Filme.nome', array(
     'class' => 'form-control mb-2 mr-sm-2',
     'placeholder' => 'Nome'
 ));
-$filtro .= $this->Form->button('Filtrar', array('type' => 'submit', 'class' => 'btn btn-primary mb-2'));
+$filtro .= $this->Js->submit('Filtrar', array(
+    'type' => 'submit', 
+    'class' => 'btn btn-primary mb-2', 
+    'update' => '#content'
+));
 $filtro .= $this->Form->end();
 
 $filtroBar = $this->Html->div('row mb-4 mt-4',
@@ -18,11 +25,11 @@ $filtroBar = $this->Html->div('row mb-4 mt-4',
 
 $detalhe = array();
 foreach ($filmes as $filme) {
-    $editLink = $this->Html->link('Alterar', '/filmes/edit/' . $filme['Filme']['id']);
-    $deleteLink = $this->Html->link('Excluir', '/filmes/delete/' . $filme['Filme']['id']);
-    $viewLink = $this->Html->link($filme['Filme']['nome'], '/filmes/view/' . $filme['Filme']['id']);
+    $editLink = $this->Js->link('Alterar', '/filmes/edit/' . $filme['Filme']['id'], array('update' => '#content'));
+    $deleteLink = $this->Js->link('Excluir', '/filmes/delete/' . $filme['Filme']['id'], array('update' => '#content'));
+    $viewLink = $this->Js->link($filme['Filme']['nome'], '/filmes/view/' . $filme['Filme']['id'], array('update' => '#content'));
     $detalhe[] = array(
-        $viewLink, 
+        $viewLink,
         $filme['Filme']['ano'],
         $filme['Genero']['nome'],
         $editLink . ' ' . $deleteLink
@@ -32,6 +39,8 @@ foreach ($filmes as $filme) {
 $titulos = array('Nome', 'Ano', 'Gênero',  '');
 $header = $this->Html->tag('thead', $this->Html->tableHeaders($titulos));
 $body = $this->Html->tableCells($detalhe);
+
+$this->Paginator->options(array('update' => '#content'));
 
 $links = array(
     $this->Paginator->first('Primeira', array('class' => 'page-link')),
@@ -54,4 +63,8 @@ echo $this->Html->tag('h1', 'Filmes');
 echo $filtroBar;
 echo $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'));
 echo $paginateBar;
+
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
 ?>

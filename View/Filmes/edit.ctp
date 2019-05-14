@@ -51,7 +51,7 @@ $form .= $this->Form->input('Filme.genero_id', array(
 ));
 
 $form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));
-$form .= $this->Html->link('Voltar', '/filmes', array('class' => 'btn btn-secondary'));
+$form .= $this->Js->link('Voltar', '/filmes', array('class' => 'btn btn-secondary', 'update' => '#content'));
 $form .= $this->Form->end();
 
 echo $this->Html->tag('h1', 'Novo Filme');
