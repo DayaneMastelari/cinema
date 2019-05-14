@@ -59,10 +59,12 @@ $form .= $this->Js->submit('Gravar', array('type' => 'submit', 'class' => 'btn b
 $form .= $this->Js->link('Voltar', '/filmes', array('class' => 'btn btn-secondary', 'update' => '#content'));
 $form .= $this->Form->end();
 
-echo $this->Html->tag('h1', 'Novo Filme');
-echo $form;
-$this->Js->buffer('$(".form-error").addClass("is-invalid")');
+echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+    $this->Html->tag('h1', 'Novo Filme') .
+    $form
+);
 
+$this->Js->buffer('$(".form-error").addClass("is-invalid")');
 if($this->request->is('ajax')) {
     echo $this->Js->writeBuffer();
 }

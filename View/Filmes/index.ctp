@@ -63,8 +63,10 @@ echo $this->Flash->render('warning');
 echo $this->Flash->render('success');
 
 echo $this->Html->tag('h1', 'Filmes');
-echo $filtroBar;
-echo $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'));
+echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+    $filtroBar .
+    $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'))
+);
 echo $paginateBar;
 
 $this->Js->buffer('$(".nav-item").removeClass("active");');
