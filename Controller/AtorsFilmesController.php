@@ -25,7 +25,7 @@ class AtorsFilmesController extends AppController {
 
     public function delete($idAtor, $idFilme) {
         $this->AtorsFilme->delete($idAtor);
-        $this->Flash->set('Excluido com sucesso');
+        $this->Flash->bootstrap('Excluido com sucesso', array('key' => 'warning'));
         $this->redirect('/filmes/view/' . $idFilme);
     }
 

@@ -50,11 +50,15 @@ $form .= $this->Form->input('Filme.genero_id', array(
     'class' => 'form-control mb-4'
 ));
 
-$form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));
+$form .= $this->Js->submit('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-4', 'update' => '#content'));
 $form .= $this->Js->link('Voltar', '/filmes', array('class' => 'btn btn-secondary', 'update' => '#content'));
 $form .= $this->Form->end();
 
 echo $this->Html->tag('h1', 'Novo Filme');
 echo $form;
+
+if ($this->request->is('ajax')){
+    echo $this->Js->writeBuffer();
+}
 ?>
 

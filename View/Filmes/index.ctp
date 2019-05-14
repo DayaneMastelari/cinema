@@ -59,11 +59,16 @@ $paginateBar = $this->Html->div('row',
     $this->Html->div('col-md-6', $paginateCount)
 );
 
+echo $this->Flash->render('warning'); 
+echo $this->Flash->render('success');
+
 echo $this->Html->tag('h1', 'Filmes');
 echo $filtroBar;
 echo $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'));
 echo $paginateBar;
 
+$this->Js->buffer('$(".nav-item").removeClass("active");');
+$this->Js->buffer('$(".nav-item a[href$=\'filmes\']").addClass("active");');
 if($this->request->is('ajax')) {
     echo $this->Js->writeBuffer();
 }

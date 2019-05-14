@@ -15,16 +15,19 @@ foreach ($this->request->data['Critica'] as $critica) {
 }
 
 $view .= $this->Html->tag('h2', 'Atores');
-$view  .= $this->Html->link('Novo Ator', '/ators_filmes/add/' . $this->request->data['Filme']['id']);
 foreach ($this->request->data['Ator'] as $ator) {
-    $atores = $ator['nome'] . ' - ' . date('d/m/Y', strtotime($ator['nascimento'])) . ' - ' . $this->Html->link('Excluir', '/ators_filmes/delete/' . $ator['AtorsFilme']['id'] . '/' . $this->request->data['Filme']['id']);
+    $atores = $ator['nome'] . ' - ' . date('d/m/Y', strtotime($ator['nascimento'])) . ' - ' . $this->Js->link('Excluir', '/ators_filmes/delete/' . $ator['AtorsFilme']['id'] . '/' . $this->request->data['Filme']['id'], array('update' => '#content'));
     $view .= $this->Html->para('', $atores);
 }
 
 
-$voltarLink = $this->Html->link('Voltar', '/filmes');
+$voltarLink = $this->JS->link('Voltar', '/filmes', array('update' => '#content'));
 
 echo $this->Html->tag('h1', 'Visualizar Filme');
 echo $view;
 echo $voltarLink;
+
+if ($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
 ?>

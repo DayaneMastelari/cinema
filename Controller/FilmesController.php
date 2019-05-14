@@ -29,8 +29,7 @@ class FilmesController extends AppController {
         if (!empty($this->request->data)) {
             $this->Filme->create();
             if ($this->Filme->save($this->request->data)) {
-                pr($this->request->data);
-                $this->Flash->set('Filme gravado com sucesso!');
+                $this->Flash->bootstrap('Filme gravado com sucesso!', array('key' => 'success'));
                $this->redirect('/filmes');
             }
         }
@@ -43,7 +42,7 @@ class FilmesController extends AppController {
     public function edit($id = null) {
         if (!empty($this->request->data)) {
             if ($this->Filme->save($this->request->data)) {
-                $this->Flash->set('Filme alterado com sucesso!');
+                $this->Flash->bootstrap('Filme alterado com sucesso!', array('key' => 'success'));
                 $this->redirect('/filmes');
             }
         } else {
@@ -65,7 +64,7 @@ class FilmesController extends AppController {
 
     public function delete($id) {
         $this->Filme->delete($id);
-        $this->Flash->set('Filme excluído com sucesso!');
+        $this->Flash->bootstrap('Filme excluído com sucesso!', array('key' => 'warning'));
         $this->redirect('/filmes');
     }
 
