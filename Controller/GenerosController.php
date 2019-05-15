@@ -29,7 +29,7 @@ class GenerosController extends AppController {
         if(!empty($this->request->data)){
             $this->Genero->create();
             if($this->Genero->save($this->request->data)){
-                $this->Flash->set('Genero incluido com sucesso');
+                $this->Flash->bootstrap('Genero incluido com sucesso', array('key' => 'success'));
                 $this->redirect('/generos');
             }
         }
@@ -38,7 +38,7 @@ class GenerosController extends AppController {
     public function edit($id = null){
         if (!empty($this->request->data)) {
             if($this->Genero->save($this->request->data)) {
-                $this->Flash->set('Genero alterado com sucesso');
+                $this->Flash->bootstrap('Genero alterado com sucesso', array('key' => 'success'));
                 $this->redirect('/generos');
             }
         } else {
@@ -51,7 +51,7 @@ class GenerosController extends AppController {
 
     public function delete($id){
         $this->Genero->delete($id);
-        $this->Flash->set('Genero excluido com sucesso');
+        $this->Flash->bootstrap('Genero excluido com sucesso', array('key' => 'warning'));
         $this->redirect('/generos');
 
     }

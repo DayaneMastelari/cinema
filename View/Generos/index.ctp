@@ -1,5 +1,5 @@
 <?php
-$novoButton = $this->Html->link('Novo', '/generos/add', array('class' => 'btn btn-success float-right'));
+$novoButton = $this->Js->link('Novo', '/generos/add', array('class' => 'btn btn-success float-right', 'update' => '#content'));
 
 $filtro = $this->Form->create('Genero', array('class' => 'form-inline'));
 $filtro .= $this->Form->input('Genero.nome', array(
@@ -8,7 +8,7 @@ $filtro .= $this->Form->input('Genero.nome', array(
     'class' => 'form-control mb-2 mr-sm-2',
     'placeholder' => 'Nome'
 ));
-$filtro .= $this->Form->button('Filtrar', array('type' => 'submit', 'class' => 'btn btn-primary mb-2'));
+$filtro .= $this->Js->submit('Filtrar', array('type' => 'submit', 'class' => 'btn btn-primary mb-2', 'update' => '#content'));
 $filtro .= $this->Form->end();
 
 $filtroBar = $this->Html->div('row mb-4 mt-4',
@@ -18,9 +18,9 @@ $filtroBar = $this->Html->div('row mb-4 mt-4',
 
 $detalhe = array();
 foreach ($generos as $genero) {
-    $editLink = $this->Html->link('Alterar', '/generos/edit/' . $genero['Genero']['id']);
-    $deleteLink = $this->Html->link('Excluir', '/generos/delete/' . $genero['Genero']['id']);
-    $viewLink = $this->Html->link($genero['Genero']['nome'], '/generos/view/' . $genero['Genero']['id']);
+    $editLink = $this->Js->link('Alterar', '/generos/edit/' . $genero['Genero']['id'], array('update' => '#content'));
+    $deleteLink = $this->Js->link('Excluir', '/generos/delete/' . $genero['Genero']['id'], array('update' => '#content'));
+    $viewLink = $this->Js->link($genero['Genero']['nome'], '/generos/view/' . $genero['Genero']['id'], array('update' => '#content'));
     $detalhe[] = array(
         $viewLink, 
         $editLink . ' ' . $deleteLink 
@@ -30,6 +30,8 @@ foreach ($generos as $genero) {
 $titulos = array('Nome',  '');
 $header = $this->Html->tag('thead', $this->Html->tableHeaders($titulos));
 $body = $this->Html->tableCells($detalhe);
+
+$this->Paginator->options(array('update' => '#content'));
 
 $this->Paginator->options(array('update' => '#content'));
 
@@ -50,13 +52,24 @@ $paginateBar = $this->Html->div('row',
     $this->Html->div('col-md-6', $paginateCount)
 );
 
+echo $this->Flash->render('warning'); 
+echo $this->Flash->render('success');
 
 echo $this->Html->tag('h1', 'Generos');
-echo $filtroBar;
-echo $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'));
+echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+    $filtroBar .
+    $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'))
+);
 echo $paginateBar;
 
 if($this->request->is('ajax')) {
     echo $this->Js->writeBuffer();
 }
+
+$this->Js->buffer('$(".nav-item").removeClass("active");');
+$this->Js->buffer('$(".nav-item a[href$=\'generos\']").addClass("active");');
+if ($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
+
 ?>

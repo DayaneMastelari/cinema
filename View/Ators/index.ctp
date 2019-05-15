@@ -61,6 +61,8 @@ echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
 );
 echo $paginateBar;
 
+$this->Js->buffer('$(".nav-item").removeClass("active");');
+$this->Js->buffer('$(".nav-item a[href$=\'ators\']").addClass("active");');
 if ($this->request->is('ajax')) {
     echo $this->Js->writeBuffer();
 }

@@ -39,7 +39,7 @@ $view .= $this->Html->div('card mt-2',
         $this->Html->para('card-body', $atorDiv)
 );
 
-$voltarLink = $this->JS->link('Voltar', '/filmes', array('update' => '#content', 'class' => 'btn btn-secondary mt-2'));
+$voltarLink = $this->Js->link('Voltar', '/filmes', array('update' => '#content', 'class' => 'btn btn-secondary mt-2'));
 
 echo $this->Html->tag('h1', 'Visualizar Filme');
 echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',

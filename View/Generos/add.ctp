@@ -4,14 +4,20 @@ $form .= $this->Form->input('Genero.nome', array(
     'label' => false, 
     'placeholder' => 'Gênero',
     'div' => array('class' => 'form-group'),
-    'class' => 'form-control mt-4 mb-4'
+    'class' => 'form-control mt-4 mb-4',
+    'error' => array('attributes' => array('class' => 'invalid-feedback'))
 ));
-$form .= $this->Form->button('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-4'));
-$form .= $this->Html->link('Voltar', '/generos', array('class' => 'btn btn-secondary'));
+$form .= $this->Js->submit('Gravar', array('type' => 'submit', 'div' => false, 'class' => 'btn btn-success mr-2', 'update' => '#content'));
+$form .= $this->Js->link('Voltar', '/generos', array('class' => 'btn btn-secondary', 'update' => '#content'));
 $form .= $this->Form->end();
 
-$voltarLink = $this->Html->link('Voltar', '/generos');
-
 echo $this->Html->tag('h1', 'Novo Genero');
-echo $form;
+echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+    $form
+);
+
+$this->Js->buffer('$(".form-error").addClass("is-invalid")');
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
 ?>
