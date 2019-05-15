@@ -1,5 +1,5 @@
 <?php
-$novoButton = $this->Html->link('Novo', '/criticas/add', array('class' => 'btn btn-success float-right'));
+$novoButton = $this->Js->link('Novo', '/criticas/add', array('class' => 'btn btn-success float-right', 'update' => '#content'));
 
 $filtro = $this->Form->create('Critica', array('class' => 'form-inline'));
 $filtro .= $this->Form->input('Critica.nome', array(
@@ -8,7 +8,7 @@ $filtro .= $this->Form->input('Critica.nome', array(
     'class' => 'form-control mb-2 mr-sm-2',
     'placeholder' => 'Nome'
 ));
-$filtro .= $this->Form->button('Filtrar', array('type' => 'submit', 'class' => 'btn btn-primary mb-2'));
+$filtro .= $this->Js->submit('Filtrar', array('type' => 'submit', 'class' => 'btn btn-primary mb-2', 'update' => '#content'));
 $filtro .= $this->Form->end();
 
 $filtroBar = $this->Html->div('row mb-4 mt-4',
@@ -18,9 +18,9 @@ $filtroBar = $this->Html->div('row mb-4 mt-4',
 
 $detalhe = array();
 foreach ($criticas as $critica) {
-    $editLink = $this->Html->link('Alterar', '/criticas/edit/' . $critica['Critica']['id']);
-    $deleteLink = $this->Html->link('Excluir', '/criticas/delete/' . $critica['Critica']['id']);
-    $viewLink = $this->Html->link($critica['Filme']['nome'], '/criticas/view/' . $critica['Critica']['id']);
+    $editLink = $this->Js->link('Alterar', '/criticas/edit/' . $critica['Critica']['id'], array('update' =>'#content'));
+    $deleteLink = $this->Js->link('Excluir', '/criticas/delete/' . $critica['Critica']['id'], array('update' =>'#content'));
+    $viewLink = $this->Js->link($critica['Filme']['nome'], '/criticas/view/' . $critica['Critica']['id'], array('update' =>'#content'));
     $detalhe[] = array(
         $critica['Critica']['nome'],
         $viewLink,
@@ -33,6 +33,8 @@ foreach ($criticas as $critica) {
 $titulos = array('Nome', 'Filme', 'Avaliação', 'Data',  '');
 $header = $this->Html->tableHeaders($titulos);
 $body = $this->Html->tableCells($detalhe);
+
+$this->Paginator->options(array('update' => '#content'));
 
 $links = array(
     $this->Paginator->first('Primeira', array('class' => 'page-link')),
@@ -51,9 +53,19 @@ $paginateBar = $this->Html->div('row',
     $this->Html->div('col-md-6', $paginateCount)
 );
 
+echo $this->Flash->render('warning'); 
+echo $this->Flash->render('success');
 
 echo $this->Html->tag('h1', 'Criticas');
-echo $filtroBar;
-echo $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'));
+echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+    $filtroBar .
+    $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'))
+);
 echo $paginateBar;
+
+$this->Js->buffer('$(".nav-item").removeClass("active");');
+$this->Js->buffer('$(".nav-item a[href$=\'criticas\']").addClass("active");');
+if($this->request->is('ajax')) {
+    echo $this->Js->writeBuffer();
+}
 ?>

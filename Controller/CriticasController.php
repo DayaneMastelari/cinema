@@ -4,6 +4,8 @@ App::uses('AppController', 'Controller');
 class CriticasController extends AppController {
 
     public $layout = 'bootstrap';
+    public $helper = array('Js' => array('Jquerry'));
+    public $components = array('RequestHandler');
 
     public $paginate = array(
         'fields' => array('Critica.id', 'Critica.nome', 'Filme.nome', 'Critica.avaliacao', 'Critica.data_avaliacao'),
@@ -27,7 +29,7 @@ class CriticasController extends AppController {
         if (!empty($this->request->data)) {
             $this->Critica->create();
             if ($this->Critica->save($this->request->data)) {
-                $this->Flash->set('Critica gravada com sucesso!');
+                $this->Flash->bootstrap('Critica gravada com sucesso!', array('key' => 'success'));
                 $this->redirect('/criticas');
             }
         }
@@ -40,7 +42,7 @@ class CriticasController extends AppController {
     public function edit($id = null) {
         if (!empty($this->request->data)) {
             if ($this->Critica->save($this->request->data)) {
-                $this->Flash->set('Critica alterada com sucesso!');
+                $this->Flash->bootstrap('Critica alterada com sucesso!', array('key' => 'success'));
                 $this->redirect('/criticas');
             }
         } else {
@@ -51,7 +53,7 @@ class CriticasController extends AppController {
         $fields = array('Filme.id', 'Filme.nome');
         $order = array('Filme.nome' => 'asc');
         $filmes = $this->Critica->Filme->find('list', compact('fields', 'order'));
-        $this->set('filmes', $filmes);        
+        $this->set('filmes', $filmes);
     }
 
     public function view($id = null) {
@@ -62,7 +64,7 @@ class CriticasController extends AppController {
 
     public function delete($id) {
         $this->Critica->delete($id);
-        $this->Flash->set('Critica excluída com sucesso!');
+        $this->Flash->bootstrap('Critica excluída com sucesso!', array('key' => 'warning'));
         $this->redirect('/criticas');
     }
 
