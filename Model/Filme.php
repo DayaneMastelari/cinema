@@ -28,14 +28,14 @@ class Filme extends AppModel {
         )
     );
 
-    public function testAnoMenorQueFilme() {
+    /*public function testAnoMenorQueFilme() {
         $checked = array('data_avaliacao' => $currentDate = date('d-m-y'););
         $this->Critica->set(array('filme_id' => 1));
         $valid = $this->Critica->anoMaiorIgualFilme($checked);
 
         $this->assertFalse($valid);
 
-    }
+    }*/
 
 }
 ?>
