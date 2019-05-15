@@ -29,6 +29,20 @@ class FilmeTest extends CakeTestCase {
         $this->assertFalse($saved);
     }
 
+    public function testAnoValido() {
+        $data = array('Filme' => array('ano' => null));
+        $saved = $this->Filme->save($data);
+        $this->assertFalse($saved);
+
+        $data = array('Filme' => array('ano' => 32-20-2017));
+        $saved = $this->Filme->save($data);
+        $this->assertFalse($saved);
+
+        $data = array('Filme' => array('ano' => 2017-10-10));
+        $saved = $this->Filme->save($data);
+        $this->assertFalse($saved);
+    }
+
 
 }
 ?>

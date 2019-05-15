@@ -35,8 +35,7 @@ $form .= $this->Html->div('form-row',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
     )) . 
     $this->Form->input('Filme.ano', array(
-        'type' => 'text', 
-        'maxlength' => 4,
+        'type' => 'text',
         'label' => false,
         'placeholder' => 'Ano',
         'div' => array('class' => 'form-group col-md-6'),
