@@ -1,7 +1,8 @@
 <?php
 App::uses('AppController', 'Controller');
 
-class UsuariosController extends AppController {
+class UsuariosController extends AppController
+{
 
     public $layout = 'bootstrap';
     public $helper = array('Js' => array('Jquerry'));
@@ -28,7 +29,7 @@ class UsuariosController extends AppController {
     public function add() {
         if (!empty($this->request->data)) {
             $this->Usuario->create();
-            if ($this->Usuario->save($this->request->data)){
+            if ($this->Usuario->save($this->request->data)) {
                 $this->Flash->bootstrap('Usuário cadastrado com sucesso!', array('key' => 'success'));
                 $this->redirect('/usuarios');
             }
@@ -37,7 +38,7 @@ class UsuariosController extends AppController {
 
     public function edit($id = null) {
         if (!empty($this->request->data)) {
-            if ($this->Usuario->save($this->request->data)){
+            if ($this->Usuario->save($this->request->data)) {
                 $this->Flash->bootstrap('Usuário alterado com sucesso!', array('key' => 'success'));
                 $this->redirect('/usuarios');
             }
@@ -48,11 +49,10 @@ class UsuariosController extends AppController {
         }
     }
 
-    public function delete($id){
+    public function delete($id) {
         $this->Usuario->delete($id);
         $this->Flash->bootstrap('Usuario excluido com sucesso', array('key' => 'warning'));
         $this->redirect('/usuarios');
-
     }
 
     public function view($id = null) {
@@ -60,6 +60,8 @@ class UsuariosController extends AppController {
         $conditions = array('Usuario.id' => $id);
         $this->request->data = $this->Usuario->find('first', compact('fields', 'conditions'));
     }
-}
 
-?>
+    public function login() {
+        $this->layout = 'login';
+    }
+}
