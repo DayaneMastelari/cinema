@@ -7,7 +7,7 @@ $form .= $this->Form->input('Usuario.Login', array(
     'placeholser' => 'Usuário',
     'class' => 'form-control',
     'div' => false,
-    'error' => array('attributes' => array('class' => 'invalid-feedback')) 
+    'error' => array('attributes' => array('class' => 'invalid-feedback'))
 
 ));
 $form .= $this->Form->input('Usuario.senha', array(
@@ -31,5 +31,4 @@ $this->Js->buffer('$(".form-error").addClass("is-invalid");');
 if ($this->request->is('ajax')) {
     echo $this->Js->writeBuffer();
 }
-
 ?>

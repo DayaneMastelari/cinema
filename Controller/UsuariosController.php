@@ -6,7 +6,24 @@ class UsuariosController extends AppController
 
     public $layout = 'bootstrap';
     public $helper = array('Js' => array('Jquerry'));
-    public $components = array('RequestHandler');
+    public $components = array(
+        'RequestHandler',
+        'Auth' => array(
+            'flash' => array('element' => 'bootstrap', 'params' => array('key' => 'warning'), 'key' => 'warning'),
+            'authError' => 'Você não possui permissão para acessar essa operação',
+            'loginAction' => '/login',
+            'loginRedirect' => '/',
+            'logoutRedirect' => '/login',
+            'authenticate' => array(
+                'form' => array(
+                    'userModel' => 'Usuario',
+                    'fields' => array('username' => 'login', 'password' => 'senha'),
+                    'passwordHasher' => array('className' => 'Simple', 'hashType' => 'sha256')
+                )
+            ),
+        ),
+        'authorize' => array('Crud' => array('userModel' => 'Usuario'))
+    );
 
     public $paginate = array(
         'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.login'),
@@ -63,5 +80,17 @@ class UsuariosController extends AppController
 
     public function login() {
         $this->layout = 'login';
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->bootstrap('Usuário ou senha incorretos', array('key' => 'danger'));
+        }
+
+    }
+
+    public function logout() {
+        $this->Auth->logout();
+        $this->redirect('/login');
     }
 }
