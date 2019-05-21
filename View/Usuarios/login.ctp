@@ -1,7 +1,7 @@
 <?php
 $form = $this->Form->create('Usuarios', array('class' => 'form-signin'));
 $form .= $this->Html->tag('h1', 'Login do Usuário', array('class' => 'h3 mb-3 font-weight-normal'));
-$form .= $this->Form->input('Usuario.Login', array(
+$form .= $this->Form->input('Usuario.login', array(
     'label' => false,
     'required' => false,
     'placeholser' => 'Usuário',

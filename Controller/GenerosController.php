@@ -23,6 +23,9 @@ class GenerosController extends AppController {
 
         $generos = $this->paginate();
         $this->set('generos', $generos);
+        $user = $this->Auth->user();
+        $temAddButton = $this->Acl->check(array('Usuario' => $user), 'Generos', 'create');
+        $this->set('temAddButton', $temAddButton);
     }
 
     public function add(){
