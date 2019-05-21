@@ -14,6 +14,10 @@ class UsuariosController extends AppController
         'limit' => 10
     );
 
+    public function beforeFilter() {
+        $this->Auth->allow(array('login', 'logout'));
+    }
+
     public function index() {
         if ($this->request->is('post') && !empty($this->request->data['Usuario']['nome'])) {
             $this->paginate['conditions'] = array(
