@@ -72,7 +72,6 @@ class UsuariosController extends AppController
             }
             $this->Flash->bootstrap('Usuário ou senha incorretos', array('key' => 'danger'));
         }
-
     }
 
     public function logout() {

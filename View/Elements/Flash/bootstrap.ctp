@@ -6,3 +6,5 @@ echo $this->Html->div('alert alert-' . $key . ' alert-dismissible fade show',
         array('type' => "button", 'class' => "close", 'data-dismiss' => "alert", 'aria-label' => "Close")
     )
 );
+
+?>

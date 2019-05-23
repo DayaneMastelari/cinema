@@ -5,7 +5,7 @@ class CriticasController extends AppController {
 
     public $layout = 'bootstrap';
     public $helper = array('Js' => array('Jquerry'));
-    public $components = array('RequestHandler');
+
 
     public $paginate = array(
         'fields' => array('Critica.id', 'Critica.nome', 'Filme.nome', 'Critica.avaliacao', 'Critica.data_avaliacao'),
