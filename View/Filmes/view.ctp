@@ -24,9 +24,10 @@ foreach ($this->request->data['Critica'] as $critica) {
     $criticas = $critica['nome'] . ' - ' . date('d/m/Y', strtotime($critica['data_avaliacao'])) . ' - Avaliação: ' . $critica['avaliacao']; 
     $criticaDiv .= $this->Html->tag('br', $criticas);
 }
+
 $view .= $this->Html->div('card mt-2',
-        $this->Html->div('card-header', 'Críticas') .
-        $this->Html->para('card-body', $criticaDiv)
+    $this->Html->div('card-header', 'Críticas') .
+    $this->Html->para('card-body', $criticaDiv)
 );
 
 $atorDiv = '';

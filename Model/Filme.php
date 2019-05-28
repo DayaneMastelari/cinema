@@ -27,15 +27,5 @@ class Filme extends AppModel {
             'date' => array('rule' => array('date', 'dmy'), 'message' => 'Data Inválida')
         )
     );
-
-    /*public function testAnoMenorQueFilme() {
-        $checked = array('data_avaliacao' => $currentDate = date('d-m-y'););
-        $this->Critica->set(array('filme_id' => 1));
-        $valid = $this->Critica->anoMaiorIgualFilme($checked);
-
-        $this->assertFalse($valid);
-
-    }*/
-
 }
 ?>
