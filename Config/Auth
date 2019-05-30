@@ -1,0 +1,15 @@
+schema create DbAcl
+acl create aco root Filmes
+acl create aro root Usuario.1
+acl grant Usuario.1 Filmes
+acl deny Usuario.1 Filmes
+
+grupos
+acl create aro root Usuario
+acl setparent aro Usuario.1 Usuario
+
+
+
+
+
+

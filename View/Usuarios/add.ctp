@@ -1,17 +1,14 @@
 <?php
 $form = $this->Form->create('Usuarios');
 $form .= $this->Form->input('Usuario.nome', array(
-        'label' => false,
         'required' => false,
         'placeholder' => 'Nome',
         'div' => array('class' => 'form-group'),
         'class' => 'form-control',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
-)); 
-    
+));    
 $form .= $this->Html->div('form-row mt-4',
     $this->Form->input('Usuario.login', array(
-        'label' => false,
         'required' => false,
         'placeholder' => 'Login',
         'div' => array('class' => 'form-group col-md-6'),
@@ -28,6 +25,15 @@ $form .= $this->Html->div('form-row mt-4',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
+$form .= $this->Form->input('Usuario.aro_parente_id', array(
+    'label' => false,
+    'placeholder' => 'Nome',
+    'div' => array('class' => 'form-group'),
+    'class' => 'form-control',
+    'type' => 'select',
+    'options' => $aros,
+    'error' => array('attributes' => array('class' => 'invalid-feedback'))
+)); 
 
 $form .= $this->Js->submit('Gravar', array('type' => 'submit', 'class' => 'btn btn-success mr-2', 'div' => false, 'update' => '#content'));
 $form .= $this->Js->link('Voltar', '/usuarios', array('class' => 'btn btn-secondary', 'update' => '#content'));

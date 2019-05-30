@@ -37,6 +37,11 @@ class UsuariosController extends AppController
                 $this->redirect('/usuarios');
             }
         }
+
+        $fields = array('Aro.id', 'Aro.alias');
+        $conditions = array('Aro.parent_id' => null);
+        $aros = $this->Acl->Aro->find('list', compact('fields', 'conditions'));
+        $this->set('aros', $aros);
     }
 
     public function edit($id = null) {
