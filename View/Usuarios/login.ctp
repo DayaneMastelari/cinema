@@ -11,8 +11,8 @@ $form .= $this->Form->input('Usuario.login', array(
 
 ));
 $form .= $this->Form->input('Usuario.senha', array(
-    'type' => 'password',
     'label' => false,
+    'type' => 'password',
     'required' => false,
     'placeholser' => 'Senha',
     'class' => 'form-control',

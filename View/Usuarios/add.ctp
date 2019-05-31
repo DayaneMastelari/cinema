@@ -1,6 +1,7 @@
 <?php
 $form = $this->Form->create('Usuarios');
 $form .= $this->Form->input('Usuario.nome', array(
+        'label' => false,
         'required' => false,
         'placeholder' => 'Nome',
         'div' => array('class' => 'form-group'),
@@ -9,6 +10,7 @@ $form .= $this->Form->input('Usuario.nome', array(
 ));    
 $form .= $this->Html->div('form-row mt-4',
     $this->Form->input('Usuario.login', array(
+        'label' => false,
         'required' => false,
         'placeholder' => 'Login',
         'div' => array('class' => 'form-group col-md-6'),
@@ -25,9 +27,8 @@ $form .= $this->Html->div('form-row mt-4',
         'error' => array('attributes' => array('class' => 'invalid-feedback'))
     ))
 );
-$form .= $this->Form->input('Usuario.aro_parente_id', array(
+$form .= $this->Form->input('Usuario.aro_parent_id', array(
     'label' => false,
-    'placeholder' => 'Nome',
     'div' => array('class' => 'form-group'),
     'class' => 'form-control',
     'type' => 'select',

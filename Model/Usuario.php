@@ -14,7 +14,7 @@ class Usuario extends AppModel {
         return true;
     }
 
-    public function afterSave($created, $options = array()) {
+    public function afterSave($created, $options = array()) {    
         if (!empty($this->data['Usuario']['aro_parent_id'])) {
             $this->aroSave();
         }
@@ -26,14 +26,14 @@ class Usuario extends AppModel {
         $saveAro = array(
             'model' => 'Usuario',
             'foreign_key' => $this->data['Usuario']['id'],
-            'parent_key' => $this->data['Usuario']['aro_parent_id']
+            'parent_id' => $this->data['Usuario']['aro_parent_id']
         );
         if (empty($aro)) {
             $Aro->create();
         } else {
             $Aro->id = $aro['Aro']['id'];
         }
-        $Aro->save($saveAro);
+        $Aro->save($saveAro);        
     }
 }
 ?>
