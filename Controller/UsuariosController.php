@@ -5,7 +5,6 @@ class UsuariosController extends AppController
 {
 
     public $layout = 'bootstrap';
-    public $helper = array('Js' => array('Jquerry'));
 
     public $paginate = array(
         'fields' => array('Usuario.id', 'Usuario.nome', 'Usuario.login'),
@@ -16,6 +15,7 @@ class UsuariosController extends AppController
 
     public function beforeFilter() {
         $this->Auth->allow(array('login', 'logout'));
+        //$this->Auth->mapActions(['read' => ['report']]);
     }
 
     public function index() {
@@ -83,4 +83,9 @@ class UsuariosController extends AppController
         $this->Auth->logout();
         $this->redirect('/login');
     }
+
+    /*public function report() {
+        $this->layout = false;
+        $this->response->type('pdf');
+    }*/
 }

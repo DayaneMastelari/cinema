@@ -51,4 +51,9 @@ class AppController extends Controller {
         ),
         'Acl'
     );
+
+    public $helpers = array(
+        'Pdf.Report', 
+        'Js' => array('Jquery')
+    );
 }

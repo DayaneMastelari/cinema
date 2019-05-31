@@ -14,15 +14,18 @@ class FilmesController extends AppController {
         'limit' => 10,
     );
 
+    public function beforeFilter() {
+        $this->Auth->mapActions(['read' => ['report']]);
+    }
+
     public function index() {
         if ($this->request->is('post') && !empty($this->request->data['Filme']['nome'])){
             $this->paginate['conditions'] = array(
                 'Filme.nome LIKE' => '%' . trim($this->request->data['Filme']['nome']) . '%'
             );
         }
-
         $filmes = $this->paginate();
-        $this->set('filmes', $filmes);        
+        $this->set('filmes', $filmes);      
     }
 
     public function add() {
@@ -66,6 +69,11 @@ class FilmesController extends AppController {
         $this->Filme->delete($id);
         $this->Flash->bootstrap('Filme excluído com sucesso!', array('key' => 'warning'));
         $this->redirect('/filmes');
+    }
+
+    public function report() {
+        $this->layout = false;
+        $this->response->type('pdf');
     }
 
 }
