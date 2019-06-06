@@ -1,7 +1,12 @@
 <?php
 $novoButton = $this->Js->link('Novo', '/filmes/add', array(
-    'class' => 'btn btn-success float-right', 
+    'class' => 'btn btn-success float-right',
     'update' => '#content'
+    
+));
+$reportButton = $this->Html->link('Imprimir', '/filmes/report', array(
+    'class' => 'btn btn-secondary float-right mr-2', 
+    'target' => '_blank'
 ));
 
 $filtro = $this->Form->create('Filme', array('class' => 'form-inline'));
@@ -20,7 +25,7 @@ $filtro .= $this->Form->end();
 
 $filtroBar = $this->Html->div('row mb-4 mt-4',
     $this->Html->div('col-md-6', $filtro) .
-    $this->Html->div('col-md-6', $novoButton)
+    $this->Html->div('col-md-6', $novoButton . $reportButton)
 );
 
 $detalhe = array();

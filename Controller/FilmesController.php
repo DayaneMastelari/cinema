@@ -74,6 +74,9 @@ class FilmesController extends AppController {
     public function report() {
         $this->layout = false;
         $this->response->type('pdf');
+        $fields = array('Filme.nome', 'Filme.ano', 'Genero.nome');
+        $filmes = $this->Filme->find('all', compact('fields'));
+        $this->set('filmes', $filmes);
     }
 
 }
