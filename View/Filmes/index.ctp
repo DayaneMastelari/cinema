@@ -1,8 +1,7 @@
 <?php
 $novoButton = $this->Js->link('Novo', '/filmes/add', array(
     'class' => 'btn btn-success float-right',
-    'update' => '#content'
-    
+    'update' => '#content'  
 ));
 $reportButton = $this->Html->link('Imprimir', '/filmes/report', array(
     'class' => 'btn btn-secondary float-right mr-2', 

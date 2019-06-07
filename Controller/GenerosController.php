@@ -64,6 +64,14 @@ class GenerosController extends AppController {
             $conditions = array('Genero.id' => $id);
             $this->request->data = $this->Genero->find('first', compact('fields', 'conditions'));
     }
+
+    public function report(){
+        $this->layout = false;
+        $this->response->type('pdf');
+        $fields = array('Genero.nome');
+        $generos = $this->Genero->find('all', compact('fields'));
+        $this->set('generos', $generos);
+    }
 }
 
 ?>

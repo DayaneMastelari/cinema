@@ -3,6 +3,10 @@ App::uses('AppModel', 'Model');
 
 class Filme extends AppModel {
 
+    public $actsAs = array(
+        'Containable'
+    );
+
     public $belongsTo = array(
         'Genero'
     );

@@ -68,5 +68,15 @@ class AtorsController extends AppController {
         $this->Flash->bootstrap('Ator excluido com sucesso', array('key' => 'warning'));
         $this->redirect('/ators');
     }
+
+    public function report(){
+        $this->layout = false;
+        $this->response->type('pdf');
+        $fields = array('Ator.nome', 'Ator.nascimento');
+        $ators = $this->Ator->find('all', compact('fields'));
+        pr($ators);
+        exit;
+        $this->set('ators', $ators);
+    }
 }
 ?>

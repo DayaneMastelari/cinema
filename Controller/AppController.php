@@ -56,4 +56,8 @@ class AppController extends Controller {
         'Pdf.Report', 
         'Js' => array('Jquery')
     );
+
+    public function beforeFilter() {
+        $this->Auth->mapActions(['read' => ['report']]);
+    }
 }

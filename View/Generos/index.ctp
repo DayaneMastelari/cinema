@@ -1,9 +1,13 @@
 <?php
-$novoButton = '';
 
-if ($temAddButton) {
-    $novoButton = $this->Js->link('Novo', '/generos/add', array('class' => 'btn btn-success float-right', 'update' => '#content'));
-}
+$novoButton = $this->Js->link('Novo', '/generos/add', array(
+    'class' => 'btn btn-success float-right', 
+    'update' => '#content'
+));
+$reportButton = $this->Html->link('imprimir', '/generos/report', array(
+    'class' => 'btn btn-secondary float-right mr-2', 
+    'target' => '_blank'
+));
 
 $filtro = $this->Form->create('Genero', array('class' => 'form-inline'));
 $filtro .= $this->Form->input('Genero.nome', array(
@@ -17,7 +21,7 @@ $filtro .= $this->Form->end();
 
 $filtroBar = $this->Html->div('row mb-4 mt-4',
     $this->Html->div('col-md-6', $filtro) .
-    $this->Html->div('col-md-6', $novoButton)
+    $this->Html->div('col-md-6', $novoButton . $reportButton)
 );
 
 $detalhe = array();

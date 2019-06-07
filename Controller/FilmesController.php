@@ -14,10 +14,6 @@ class FilmesController extends AppController {
         'limit' => 10,
     );
 
-    public function beforeFilter() {
-        $this->Auth->mapActions(['read' => ['report']]);
-    }
-
     public function index() {
         if ($this->request->is('post') && !empty($this->request->data['Filme']['nome'])){
             $this->paginate['conditions'] = array(
