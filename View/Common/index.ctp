@@ -40,6 +40,12 @@ $titulos = array('Nome', 'Ano', 'Gênero',  '');
 $header = $this->Html->tag('thead', $this->Html->tableHeaders($titulos));
 $body = $this->Html->tableCells($detalhe);
 
+echo $this->Html->tag('h1', 'Filmes');
+echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
+    $filtroBar .
+    $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'))
+);
+
 $this->Paginator->options(array('update' => '#content'));
 
 $links = array(
@@ -62,11 +68,6 @@ $paginateBar = $this->Html->div('row',
 echo $this->Flash->render('warning'); 
 echo $this->Flash->render('success');
 
-echo $this->Html->tag('h1', 'Filmes');
-echo $this->Html->div('my-3 p-3 bg-white rounded shadow-sm',
-    $filtroBar .
-    $this->Html->tag('table', $header . $body, array('class' => 'table table-hover'))
-);
 echo $paginateBar;
 
 $this->Js->buffer('$(".nav-item").removeClass("active");');
